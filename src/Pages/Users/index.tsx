@@ -5,9 +5,11 @@ import { Nav } from '../../Layouts/Nav';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import AddIcon from '@mui/icons-material/Add';
+import CancelIcon from '@mui/icons-material/Cancel';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import Orders from './UsersList';
+import UserLists from './UsersList';
+import UserForm from '../../Components/UserForm';
 
 const drawerWidth: number = 240;
 
@@ -62,7 +64,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState<boolean>(true);
+  const [showUserForm, setShowUserForm] = React.useState<boolean>(false);
+
+  const onCreateBtnClick = () => {
+    setShowUserForm(current => !current)
+  }
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -134,19 +142,30 @@ function DashboardContent() {
           }}
         >
           <MUI.Toolbar />
-          <MUI.Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <MUI.Grid container spacing={3}>
-              {/* Recent Orders */}
+          <MUI.Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+            <MUI.Grid container spacing={3} alignItems="center" justifyContent="center" direction="column">
               <MUI.Grid item xs={12}>
-                <MUI.Button sx={{mb:2}} variant="contained">
-                  <AddIcon/>
-                  &ensp;
-                  New User
-                </MUI.Button>
+                <MUI.Grid item xs={12}>
+                  <MUI.Button sx={{mb:2}} variant="contained" onClick={onCreateBtnClick}>
+                    {showUserForm ? (
+                      <>
+                        <CancelIcon/>&ensp;cancel
+                      </>
+                    ) : (
+                      <>
+                        <AddIcon/>&ensp;new
+                      </>
+                    )}
+                  </MUI.Button>
+                </MUI.Grid>
                 <MUI.Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </MUI.Paper>
-              </MUI.Grid>
+                  {showUserForm ? (
+                    <UserForm/>
+                  ) : (
+                    <UserLists />
+                  )}
+                  </MUI.Paper>
+                </MUI.Grid>
             </MUI.Grid>
           </MUI.Container>
         </MUI.Box>
@@ -158,3 +177,5 @@ function DashboardContent() {
 export default function Dashboard() {
   return <DashboardContent />;
 }
+
+

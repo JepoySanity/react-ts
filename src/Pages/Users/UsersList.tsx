@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as MUI from '@mui/material'
-import Title from './Title';
+import Title from '../../Components/Title';
 
 // Generate User Data
 function createData(
@@ -35,7 +35,7 @@ const rows = [
 
 export default function Orders() {
   return (
-    <React.Fragment>
+    <>
       <Title>List of Users</Title>
       <MUI.Table size="small">
         <MUI.TableHead>
@@ -69,6 +69,6 @@ export default function Orders() {
           ))}
         </MUI.TableBody>
       </MUI.Table>
-    </React.Fragment>
+    </>
   );
 }
