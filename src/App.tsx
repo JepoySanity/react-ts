@@ -8,7 +8,7 @@ function App() {
       <Router.BrowserRouter>
         <Router.Routes>
           <Router.Route path="/" element={ <Login/> } />
-          <Router.Route path="/home" element={ <Home/> } />
+          <Router.Route path="/users" element={ <Home/> } />
         </Router.Routes>
       </Router.BrowserRouter>
     </div>

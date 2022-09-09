@@ -1,5 +1,7 @@
+import Dashboard from "./Users"
+
 export default function Home(){
     return(
-        <div>asdf</div>
+        <Dashboard/>
     )
 }
