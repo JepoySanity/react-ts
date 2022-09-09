@@ -1,12 +1,14 @@
 import * as Router from 'react-router-dom'
-import LoginForm from './Components/LoginForm'
+import Login from './Pages/Login'
+import Home from './Pages/Home'
 
 function App() {
   return (
     <div className="App">
       <Router.BrowserRouter>
         <Router.Routes>
-          <Router.Route path="/" element={ <LoginForm/> } />
+          <Router.Route path="/" element={ <Login/> } />
+          <Router.Route path="/home" element={ <Home/> } />
         </Router.Routes>
       </Router.BrowserRouter>
     </div>
