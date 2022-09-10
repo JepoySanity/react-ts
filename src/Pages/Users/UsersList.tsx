@@ -2,38 +2,17 @@ import * as React from 'react';
 import * as MUI from '@mui/material'
 import Title from '../../Components/Title';
 
-// Generate User Data
-function createData(
-  id: number,
-  status: string,
-  name: string,
-  email: string,
-  department: string,
-  location: string,
-) {
-  return { id, status, name, email, department, location };
+interface IProps {
+  users: {
+    id: number,
+    status: string,
+    name: string,
+    email: string,
+    department: string,
+    location: string,
+  }[]
 }
-
-const rows = [
-  createData(
-    0,
-    'Active',
-    'John Jefferson Factoran',
-    'john.factoran@awsys-i.com',
-    'Dev F',
-    'Alabang',
-  ),
-  createData(
-    1,
-    'Active',
-    'Christian Gil Aquino',
-    'christian.aquino@awsys-i.com',
-    'Dev F',
-    'Makati',
-  ),
-];
-
-export default function Orders() {
+export default function UserLists({ users }: IProps) {
   return (
     <>
       <Title>List of Users</Title>
@@ -49,13 +28,13 @@ export default function Orders() {
           </MUI.TableRow>
         </MUI.TableHead>
         <MUI.TableBody>
-          {rows.map((row) => (
-            <MUI.TableRow key={row.id}>
-              <MUI.TableCell>{row.status}</MUI.TableCell>
-              <MUI.TableCell>{row.name}</MUI.TableCell>
-              <MUI.TableCell>{row.email}</MUI.TableCell>
-              <MUI.TableCell>{row.department}</MUI.TableCell>
-              <MUI.TableCell>{row.location}</MUI.TableCell>
+          {users.map((user) => (
+            <MUI.TableRow key={user.id}>
+              <MUI.TableCell>{user.status}</MUI.TableCell>
+              <MUI.TableCell>{user.name}</MUI.TableCell>
+              <MUI.TableCell>{user.email}</MUI.TableCell>
+              <MUI.TableCell>{user.department}</MUI.TableCell>
+              <MUI.TableCell>{user.location}</MUI.TableCell>
               <MUI.TableCell align='right'>
                 <MUI.Button variant='outlined'>
                   Edit

@@ -63,9 +63,39 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+interface IState {
+  users: {
+    id: number,
+    status: string,
+    name: string,
+    email: string,
+    department: string,
+    location: string,
+  }[]
+}
+
+export default function Users() {
+
   const [open, setOpen] = React.useState<boolean>(true);
   const [showUserForm, setShowUserForm] = React.useState<boolean>(false);
+  const [users, setUsers] = React.useState<IState['users']>([]);
+
+  React.useEffect(()=>{
+    populateUsers()
+  })
+
+  const populateUsers = () => {
+    setUsers([
+      {
+        id: 1,
+        status: 'active',
+        name: 'Jepoy Factoran',
+        email: 'factoran20@gmail.com',
+        department: 'Dev F',
+        location: 'Alabang',
+      }
+    ])
+  }
 
   const onCreateBtnClick = () => {
     setShowUserForm(current => !current)
@@ -142,7 +172,7 @@ function DashboardContent() {
           }}
         >
           <MUI.Toolbar />
-          <MUI.Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <MUI.Container sx={{ mt: 4, mb: 4, width: 'auto' }}>
             <MUI.Grid container spacing={3} alignItems="center" justifyContent="center" direction="column">
               <MUI.Grid item xs={12}>
                 <MUI.Grid item xs={12}>
@@ -162,7 +192,7 @@ function DashboardContent() {
                   {showUserForm ? (
                     <UserForm/>
                   ) : (
-                    <UserLists />
+                    <UserLists users={users} />
                   )}
                   </MUI.Paper>
                 </MUI.Grid>
@@ -172,10 +202,6 @@ function DashboardContent() {
       </MUI.Box>
     </ThemeProvider>
   );
-}
-
-export default function Dashboard() {
-  return <DashboardContent />;
 }
 
 
