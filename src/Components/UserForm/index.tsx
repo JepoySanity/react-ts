@@ -41,6 +41,13 @@ export default function UserForm({ users , setUsers, setShowUserForm }: IProps) 
       }
     ])
     setShowUserForm(false)
+    setInput({
+      status:     "",
+      name:       "",
+      email:      "",
+      department: "",
+      location:   ""
+    })
   }
  
   return (
