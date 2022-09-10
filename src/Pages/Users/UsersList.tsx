@@ -1,17 +1,8 @@
 import * as React from 'react';
 import * as MUI from '@mui/material'
 import Title from '../../Components/Title';
+import { IState as IProps} from '../../Pages/Users';
 
-interface IProps {
-  users: {
-    id: number,
-    status: string,
-    name: string,
-    email: string,
-    department: string,
-    location: string,
-  }[]
-}
 export default function UserLists({ users }: IProps) {
   return (
     <>

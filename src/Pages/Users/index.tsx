@@ -63,9 +63,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-interface IState {
+export interface IState {
   users: {
-    id: number,
+    id?: number,
     status: string,
     name: string,
     email: string,
@@ -82,7 +82,7 @@ export default function Users() {
 
   React.useEffect(()=>{
     populateUsers()
-  })
+  },[])
 
   const populateUsers = () => {
     setUsers([
@@ -97,7 +97,7 @@ export default function Users() {
     ])
   }
 
-  const onCreateBtnClick = () => {
+  const onCreateBtnClick = (): void => {
     setShowUserForm(current => !current)
   }
 
@@ -190,7 +190,7 @@ export default function Users() {
                 </MUI.Grid>
                 <MUI.Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   {showUserForm ? (
-                    <UserForm/>
+                    <UserForm users={users} setUsers={setUsers} setShowUserForm={setShowUserForm}/>
                   ) : (
                     <UserLists users={users} />
                   )}
